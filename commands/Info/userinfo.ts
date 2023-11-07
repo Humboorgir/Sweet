@@ -26,7 +26,7 @@ const command = {
         { name: "Role Count", value: `${member.roles.cache.size - 1}`, inline: true }
       );
 
-    interaction.channel?.send({ embeds: [embed] });
+    interaction.reply({ embeds: [embed] });
   },
 } as Command;
 
