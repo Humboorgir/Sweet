@@ -18,15 +18,14 @@ const commandFolders = fs.readdirSync(foldersPath);
 
 (async () => {
   for (const folder of commandFolders) {
-    // Grab all the command files from the commands directory you created earlier
+    // grabs all the command files from the commands directory
     const commandsPath = path.join(foldersPath, folder);
     const commandFiles = fs
       .readdirSync(commandsPath)
-      .filter((file: string) => file.endsWith(".js") || file.endsWith(".ts"));
-    // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
+      .filter((file) => file.endsWith(".js") || file.endsWith(".ts"));
     for (const file of commandFiles) {
       const filePath = path.join(commandsPath, file);
-      const { default: command } = await import(filePath);
+      const command = require(filePath).default;
       if ("data" in command && "execute" in command) {
         commands.push(command.data.toJSON());
       } else {
