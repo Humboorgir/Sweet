@@ -3,7 +3,9 @@ import { Command } from "@/types";
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 
 const command = {
-  data: new SlashCommandBuilder().setName("help").setDescription("Displays a list of available commands"),
+  data: new SlashCommandBuilder()
+    .setName("help")
+    .setDescription("Displays a list of all the available commands"),
   execute(interaction) {
     const commands = interaction.client.commands;
 
