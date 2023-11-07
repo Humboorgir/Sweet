@@ -15,7 +15,7 @@ const command = {
     );
     const bots = members.filter((m) => m.user.bot);
     const embed = new EmbedBuilder()
-      .setColor(65535)
+      .setColor("#0077f7")
       .setTitle("Member count")
       .addFields(
         { name: "Total", value: String(members.size), inline: true },

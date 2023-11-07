@@ -4,9 +4,9 @@ config();
 import { Client, Collection, GatewayIntentBits } from "discord.js";
 import * as path from "path";
 import * as fs from "fs";
-const { Guilds, GuildMessages, MessageContent } = GatewayIntentBits;
+const { Guilds, GuildMessages, GuildPresences, MessageContent } = GatewayIntentBits;
 
-const client = new Client({ intents: [Guilds, GuildMessages, MessageContent] });
+const client = new Client({ intents: [Guilds, GuildMessages, GuildPresences, MessageContent] });
 const { DISCORD_TOKEN } = process.env;
 
 client.commands = new Collection();
