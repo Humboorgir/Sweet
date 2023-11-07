@@ -11,6 +11,6 @@ export interface Event {
 
 declare module "discord.js" {
   export interface Client {
-    commands: Collection<string, Command>;
+    commands: Collection<string, { category: string; module: Command }>;
   }
 }

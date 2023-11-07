@@ -4,13 +4,12 @@ config();
 import { Client, Collection, GatewayIntentBits } from "discord.js";
 import * as path from "path";
 import * as fs from "fs";
-import type { Command } from "./types";
 const { Guilds, GuildMessages, MessageContent } = GatewayIntentBits;
 
 const client = new Client({ intents: [Guilds, GuildMessages, MessageContent] });
 const { DISCORD_TOKEN } = process.env;
 
-client.commands = new Collection<string, Command>();
+client.commands = new Collection();
 
 LoadEventHandler();
 
@@ -54,7 +53,7 @@ async function LoadCommandHandler() {
         continue;
       }
       console.log(`Loading command: ${command.data.name}`);
-      client.commands.set(command.data.name, command);
+      client.commands.set(command.data.name, { category: folder, module: command });
     }
   }
 }
