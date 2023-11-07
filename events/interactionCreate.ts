@@ -4,7 +4,6 @@ const event = {
   name: "interactionCreate",
   async execute(interaction) {
     if (!interaction.isChatInputCommand()) return;
-
     const command = interaction.client.commands.get(interaction.commandName);
 
     if (!command) {
@@ -13,7 +12,7 @@ const event = {
     }
 
     try {
-      await command.execute(interaction);
+      await command.module.execute(interaction);
     } catch (error) {
       console.error(error);
 
