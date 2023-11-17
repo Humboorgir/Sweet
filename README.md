@@ -1,6 +1,6 @@
 # Sweet
-AI-powered moderation discord bot.
 
+AI-powered moderation discord bot.
 
 # LICENSE
 

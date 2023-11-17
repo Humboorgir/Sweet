@@ -1,4 +1,4 @@
-import type { Collection, CommandInteraction, SlashCommandBuilder } from "discord.js";
+import type { Collection, CommandInteraction, SlashCommandBuilder, Client } from "discord.js";
 
 export interface Command {
   data: SlashCommandBuilder;
@@ -13,4 +13,8 @@ declare module "discord.js" {
   export interface Client {
     commands: Collection<string, { category: string; module: Command }>;
   }
+}
+
+declare global {
+  var client: Client;
 }

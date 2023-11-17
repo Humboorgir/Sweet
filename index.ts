@@ -2,11 +2,13 @@ import { config } from "dotenv";
 config();
 
 import { Client, Collection, GatewayIntentBits } from "discord.js";
+import mongoConnect from "@/lib/mongoConnect";
 import * as path from "path";
 import * as fs from "fs";
-const { Guilds, GuildMessages, GuildPresences, MessageContent } = GatewayIntentBits;
+const { Guilds, GuildMessages, GuildPresences, MessageContent, GuildMembers } = GatewayIntentBits;
 
-const client = new Client({ intents: [Guilds, GuildMessages, GuildPresences, MessageContent] });
+const client = new Client({ intents: [Guilds, GuildMessages, GuildMembers, GuildPresences, MessageContent] });
+global.client = client;
 const { DISCORD_TOKEN } = process.env;
 
 client.commands = new Collection();
@@ -14,6 +16,8 @@ client.commands = new Collection();
 LoadEventHandler();
 
 LoadCommandHandler();
+
+mongoConnect();
 
 // Event handler
 async function LoadEventHandler() {
