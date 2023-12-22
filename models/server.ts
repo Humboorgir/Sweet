@@ -4,20 +4,26 @@ const reqString = {
   type: String,
   required: true,
 };
-const serverSchema = new mongoose.Schema({
+const reqBool = {
+  type: Boolean,
+  required: true,
+};
+
+const guildSchema = new mongoose.Schema({
   id: reqString,
-  name: reqString,
-  iconUrl: reqString,
   settings: {
     welcome: {
+      enabled: reqBool,
       channelId: reqString,
       message: reqString,
     },
     goodbye: {
+      enabled: reqBool,
       channelId: reqString,
       message: reqString,
     },
   },
 });
 
-export default mongoose.model("server", serverSchema);
+const model = mongoose.models.Guild || mongoose.model("Guild", guildSchema);
+export default model;
