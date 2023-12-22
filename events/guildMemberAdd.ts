@@ -9,7 +9,7 @@ const event = {
       id: member.guild.id,
     });
 
-    if (!serverDocument || !serverDocument.settings?.welcome?.channelId) return;
+    if (!serverDocument || !serverDocument.settings?.welcome?.enabled) return;
 
     const welcomeChannel = member.guild.channels.cache.find(
       (channel) => channel.id == serverDocument.settings?.welcome?.channelId
