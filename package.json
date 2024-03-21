@@ -16,7 +16,10 @@
     "typescript": "^5.1.6"
   },
   "dependencies": {
-    "discord.js": "^14.13.0",
+    "@tensorflow-models/toxicity": "^1.2.2",
+    "@tensorflow/tfjs": "^4.17.0",
+    "@tensorflow/tfjs-node": "^4.17.0",
+    "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
     "mongoose": "^8.0.1"
   }

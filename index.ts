@@ -1,14 +1,27 @@
 import { config } from "dotenv";
 config();
 
+require("@tensorflow/tfjs");
+const toxicity = require("@tensorflow-models/toxicity");
+
 import { Client, Collection, GatewayIntentBits } from "discord.js";
 import mongoConnect from "@/lib/mongoConnect";
 import * as path from "path";
 import * as fs from "fs";
 const { Guilds, GuildMessages, GuildPresences, MessageContent, GuildMembers } = GatewayIntentBits;
 
-const client = new Client({ intents: [Guilds, GuildMessages, GuildMembers, GuildPresences, MessageContent] });
+const client = new Client({
+  intents: [Guilds, GuildMessages, GuildMembers, GuildPresences, MessageContent],
+});
 global.client = client;
+
+const threshold = 0.9;
+toxicity.load(threshold).then((model: any) => {
+  console.log("model loaded");
+  // @ts-ignore
+  client.model = model;
+});
+
 const { DISCORD_TOKEN } = process.env;
 
 client.commands = new Collection();
